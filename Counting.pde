@@ -20,12 +20,11 @@
 */
 
 
-
-
 // Global Constants
 final int BG_COLOR = 0;
 final int NUMBER_LENGTH = 5;
 final int TEXT_SIZE = 40;
+final int SPEED = 60;
 
 
 // Global Variables
@@ -50,24 +49,25 @@ void setup() {
   
 } // End of setup()
   
-
-
+  
 void draw() {
   fill(255);
   background(BG_COLOR);
   drawTitles();
   
-  String binary_text = binary(counter/60, NUMBER_LENGTH);
-  String hex_text = hex(counter/60, NUMBER_LENGTH);
-  String octal_text = decimalToOctal(counter/60);
+  int display_number = counter/SPEED;
   
-  text(nf(counter/60, NUMBER_LENGTH), width/2, height/5 + textAscent());
+  String binary_text = binary(display_number, NUMBER_LENGTH);
+  String hex_text = hex(display_number, NUMBER_LENGTH);
+  String octal_text = decimalToOctal(display_number);
+  
+  text(nf(display_number, NUMBER_LENGTH), width/2, height/5 + textAscent());
   text(binary_text, width/5, height/2 + textAscent());
   text(octal_text, width*2/5, height/2 + textAscent());
   text(hex_text, width*3/5, height/2 + textAscent());
   
   counter++;
-  if (counter % 60 == 0){
+  if (counter % SPEED == 0){
     binary_ps.addParticle(binary_text);
     hex_ps.addParticle(hex_text);
     octal_ps.addParticle(octal_text);
@@ -75,7 +75,7 @@ void draw() {
   binary_ps.run();
   hex_ps.run();
   octal_ps.run();
-  println(decimalToOctal(counter/60));
+  println(decimalToOctal(display_number));
 
 } // End of draw()
 
