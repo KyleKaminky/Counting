@@ -73,7 +73,7 @@ void draw() {
   float x = width*4/5;
   float y = height/2+textAscent();
   stroke(255);
-  babylonian.drawNumber(13, x, y);
+  babylonian.drawNumber(14, x, y);
   
   counter++;
   if (counter % SPEED == 0){
@@ -92,7 +92,7 @@ void drawTitles() {
   text("Binary", width/5, height/2);
   text("Octal", width*2/5, height/2);
   text("Hexadecimal", width*3/5, height/2);
-  text("Other", width*4/5, height/2);
+  text("Babylonian", width*4/5, height/2);
   
   
 } // End of drawTitles()
