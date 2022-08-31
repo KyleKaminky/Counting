@@ -30,6 +30,7 @@ final int SPEED = 60;
 // Global Variables
 int counter;
 ParticleSystem binary_ps, hex_ps, octal_ps;
+Babylonian babylonian;
 
 
 void setup() {
@@ -45,6 +46,7 @@ void setup() {
   binary_ps = new ParticleSystem(new PVector(width/5, height/2 + textAscent()));
   hex_ps = new ParticleSystem(new PVector(width*3/5, height/2 + textAscent()));
   octal_ps = new ParticleSystem(new PVector(width*2/5, height/2 + textAscent()));
+  babylonian = new Babylonian(5);
   
   
 } // End of setup()
@@ -65,6 +67,11 @@ void draw() {
   text(binary_text, width/5, height/2 + textAscent());
   text(octal_text, width*2/5, height/2 + textAscent());
   text(hex_text, width*3/5, height/2 + textAscent());
+  
+  float x = width*4/5;
+  float y = height/2+textAscent();
+  stroke(255);
+  babylonian.drawNumber(6, x, y);
   
   counter++;
   if (counter % SPEED == 0){
