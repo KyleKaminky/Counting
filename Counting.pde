@@ -73,7 +73,7 @@ void draw() {
   float x = width*4/5;
   float y = height/2+textAscent();
   stroke(255);
-  babylonian.drawNumber(11, x, y);
+  babylonian.drawNumber(13, x, y);
   
   counter++;
   if (counter % SPEED == 0){
