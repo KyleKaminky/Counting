@@ -29,8 +29,7 @@ final int SPEED = 60;
 
 // Global Variables
 int counter;
-ParticleSystem binary_ps, hex_ps, octal_ps;
-Babylonian babylonian;
+ParticleSystem binary_ps, hex_ps, octal_ps, decimal_ps;
 
 
 void setup() {
@@ -44,9 +43,9 @@ void setup() {
   counter = 0;
   
   binary_ps = new ParticleSystem(new PVector(width/5, height/2 + textAscent()));
-  hex_ps = new ParticleSystem(new PVector(width*3/5, height/2 + textAscent()));
+  hex_ps = new ParticleSystem(new PVector(width*4/5, height/2 + textAscent()));
   octal_ps = new ParticleSystem(new PVector(width*2/5, height/2 + textAscent()));
-  babylonian = new Babylonian(5);
+  decimal_ps = new ParticleSystem(new PVector(width*3/5, height/2+textAscent()));
   
   
 } // End of setup()
@@ -62,28 +61,25 @@ void draw() {
   String binary_text = binary(display_number, NUMBER_LENGTH);
   String hex_text = hex(display_number, NUMBER_LENGTH);
   String octal_text = decimalToOctal(display_number);
-  stroke(255);
-  //decimalToBabylonian(display_number, width*4/5, height/2 + textAscent());
+  String decimal_text = nf(display_number, NUMBER_LENGTH);
   
-  text(nf(display_number, NUMBER_LENGTH), width/2, height/5 + textAscent());
+  text(decimal_text, width*3/5, height/2 + textAscent());
   text(binary_text, width/5, height/2 + textAscent());
   text(octal_text, width*2/5, height/2 + textAscent());
-  text(hex_text, width*3/5, height/2 + textAscent());
+  text(hex_text, width*4/5, height/2 + textAscent());
   
-  float x = width*4/5;
-  float y = height/2+textAscent();
-  stroke(255);
-  babylonian.drawNumber(14, x, y);
   
   counter++;
   if (counter % SPEED == 0){
     binary_ps.addParticle(binary_text);
     hex_ps.addParticle(hex_text);
     octal_ps.addParticle(octal_text);
+    decimal_ps.addParticle(decimal_text);
   }
   binary_ps.run();
   hex_ps.run();
   octal_ps.run();
+  decimal_ps.run();
 
 } // End of draw()
 
@@ -117,8 +113,8 @@ void decimalToBabylonian(int d, float x, float y) {
  }
  b.reverse();
  println(b);
- for (int i = 0; i < b.size(); i++) {
-   babylonian.drawNumber(int(b.get(i)), x, y);
- }
+ //for (int i = 0; i < b.size(); i++) {
+ //  babylonian.drawNumber(int(b.get(i)), x, y);
+ //}
   
 }
