@@ -21,15 +21,21 @@
 
 
 // Global Constants
-final int BG_COLOR = 0;
+final int BG_COLOR = #19323C;
 final int NUMBER_LENGTH = 5;
 final int TEXT_SIZE = 40;
 final int SPEED = 60;
+final int BINARY_COLOR = #3B8EA5;
+final int OCTAL_COLOR = #97D8B2;
+final int DECIMAL_COLOR = #EEE5E9;
+final int HEX_COLOR = #81667A;
 
 
 // Global Variables
 int counter;
 ParticleSystem binary_ps, hex_ps, octal_ps, decimal_ps;
+float binary_x, octal_x, decimal_x, hex_x;
+float title_y;
 
 
 void setup() {
@@ -42,17 +48,22 @@ void setup() {
   
   counter = 0;
   
-  binary_ps = new ParticleSystem(new PVector(width/5, height/2 + textAscent()));
-  hex_ps = new ParticleSystem(new PVector(width*4/5, height/2 + textAscent()));
-  octal_ps = new ParticleSystem(new PVector(width*2/5, height/2 + textAscent()));
-  decimal_ps = new ParticleSystem(new PVector(width*3/5, height/2+textAscent()));
+  binary_x = width/5;
+  octal_x = width*2/5;
+  decimal_x = 3*width/5;
+  hex_x = 4*width/5;
+  title_y = height/5;
+  
+  binary_ps = new ParticleSystem(new PVector(binary_x, title_y + textAscent()), BINARY_COLOR);
+  hex_ps = new ParticleSystem(new PVector(hex_x, title_y + textAscent()), HEX_COLOR);
+  octal_ps = new ParticleSystem(new PVector(octal_x, title_y + textAscent()), OCTAL_COLOR);
+  decimal_ps = new ParticleSystem(new PVector(decimal_x, title_y + textAscent()), DECIMAL_COLOR);
   
   
 } // End of setup()
   
   
 void draw() {
-  fill(255);
   background(BG_COLOR);
   drawTitles();
   
@@ -63,10 +74,17 @@ void draw() {
   String octal_text = decimalToOctal(display_number);
   String decimal_text = nf(display_number, NUMBER_LENGTH);
   
-  text(decimal_text, width*3/5, height/2 + textAscent());
-  text(binary_text, width/5, height/2 + textAscent());
-  text(octal_text, width*2/5, height/2 + textAscent());
-  text(hex_text, width*4/5, height/2 + textAscent());
+  fill(DECIMAL_COLOR);
+  text(decimal_text, decimal_x, title_y + textAscent());
+  
+  fill(BINARY_COLOR);
+  text(binary_text, binary_x, title_y + textAscent());
+  
+  fill(OCTAL_COLOR);
+  text(octal_text, octal_x, title_y + textAscent());
+  
+  fill(HEX_COLOR);
+  text(hex_text, hex_x, title_y + textAscent());
   
   
   counter++;
@@ -84,12 +102,15 @@ void draw() {
 } // End of draw()
 
 void drawTitles() {
-  text("Decimal", width/2, height/5);
-  text("Binary", width/5, height/2);
-  text("Octal", width*2/5, height/2);
-  text("Hexadecimal", width*3/5, height/2);
-  text("Babylonian", width*4/5, height/2);
-  
+  fill(#A17C6B);
+  //fill(DECIMAL_COLOR);
+  text("Decimal", decimal_x, title_y);
+  //fill(BINARY_COLOR);
+  text("Binary", binary_x, title_y);
+  //fill(OCTAL_COLOR);
+  text("Octal", octal_x, title_y);
+  //fill(HEX_COLOR);
+  text("Hexadecimal", hex_x, title_y);
   
 } // End of drawTitles()
 
@@ -104,17 +125,3 @@ String decimalToOctal(int d) {
   
   return nf(int(octal_string), NUMBER_LENGTH);
 } // End of decimalToOctal()
-
-void decimalToBabylonian(int d, float x, float y) {
- IntList b = new IntList();
- while (d != 0) {
-   b.append(d%60);
-   d = d / 60;
- }
- b.reverse();
- println(b);
- //for (int i = 0; i < b.size(); i++) {
- //  babylonian.drawNumber(int(b.get(i)), x, y);
- //}
-  
-}

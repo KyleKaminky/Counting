@@ -6,13 +6,15 @@ class Particle {
   PVector acceleration;
   float lifespan;
   String number;
+  int text_color;
 
-  Particle(PVector l, String n) {
+  Particle(PVector l, String n, int c) {
     //acceleration = new PVector(0, 0.05);
     velocity = new PVector(0, 1);
     position = l.copy();
     lifespan = 255.0;
     number = n;
+    text_color = c;
     
   }
 
@@ -30,8 +32,8 @@ class Particle {
 
   // Method to display
   void display() {
-    stroke(255, lifespan);
-    fill(255, lifespan);
+    stroke(text_color, lifespan);
+    fill(text_color, lifespan);
     //ellipse(position.x, position.y, 8, 8);
     text(number, position.x, position.y);
   }
