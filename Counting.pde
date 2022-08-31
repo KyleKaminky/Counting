@@ -62,6 +62,8 @@ void draw() {
   String binary_text = binary(display_number, NUMBER_LENGTH);
   String hex_text = hex(display_number, NUMBER_LENGTH);
   String octal_text = decimalToOctal(display_number);
+  stroke(255);
+  //decimalToBabylonian(display_number, width*4/5, height/2 + textAscent());
   
   text(nf(display_number, NUMBER_LENGTH), width/2, height/5 + textAscent());
   text(binary_text, width/5, height/2 + textAscent());
@@ -71,7 +73,7 @@ void draw() {
   float x = width*4/5;
   float y = height/2+textAscent();
   stroke(255);
-  babylonian.drawNumber(6, x, y);
+  babylonian.drawNumber(11, x, y);
   
   counter++;
   if (counter % SPEED == 0){
@@ -82,7 +84,6 @@ void draw() {
   binary_ps.run();
   hex_ps.run();
   octal_ps.run();
-  println(decimalToOctal(display_number));
 
 } // End of draw()
 
@@ -107,3 +108,17 @@ String decimalToOctal(int d) {
   
   return nf(int(octal_string), NUMBER_LENGTH);
 } // End of decimalToOctal()
+
+void decimalToBabylonian(int d, float x, float y) {
+ IntList b = new IntList();
+ while (d != 0) {
+   b.append(d%60);
+   d = d / 60;
+ }
+ b.reverse();
+ println(b);
+ for (int i = 0; i < b.size(); i++) {
+   babylonian.drawNumber(int(b.get(i)), x, y);
+ }
+  
+}
