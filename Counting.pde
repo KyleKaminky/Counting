@@ -35,6 +35,7 @@ final String DECIMAL_TITLE = "DECIMAL";
 final String BINARY_TITLE = "BINARY";
 final String OCTAL_TITLE = "OCTAL";
 final String HEX_TITLE = "HEXADECIMAL";
+final int X_GAP = 40;
 
 
 // Global Variables
@@ -54,10 +55,12 @@ void setup() {
   
   counter = 0;
   
-  binary_x = width/5;
-  octal_x = width*2/5;
-  decimal_x = 3*width/5;
-  hex_x = 4*width/5;
+  float split = (width - 2*X_GAP) / 4;
+  
+  binary_x = X_GAP + split/2;
+  octal_x = X_GAP + 1.5 *split;
+  decimal_x = X_GAP + 2.5*split;
+  hex_x = X_GAP + 3.5*split;
   title_y = height/5;
   
   binary_ps = new ParticleSystem(new PVector(binary_x, title_y + textAscent()), BINARY_COLOR);
