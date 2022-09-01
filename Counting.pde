@@ -23,12 +23,18 @@
 // Global Constants
 final int BG_COLOR = #19323C;
 final int NUMBER_LENGTH = 5;
+final int TITLE_SIZE = 60;
 final int TEXT_SIZE = 40;
 final int SPEED = 60;
 final int BINARY_COLOR = #3B8EA5;
 final int OCTAL_COLOR = #97D8B2;
-final int DECIMAL_COLOR = #EEE5E9;
+final int DECIMAL_COLOR = #A17C6B;
 final int HEX_COLOR = #81667A;
+final int TITLE_COLOR = #EEE5E9;
+final String DECIMAL_TITLE = "DECIMAL";
+final String BINARY_TITLE = "BINARY";
+final String OCTAL_TITLE = "OCTAL";
+final String HEX_TITLE = "HEXADECIMAL";
 
 
 // Global Variables
@@ -102,15 +108,34 @@ void draw() {
 } // End of draw()
 
 void drawTitles() {
-  fill(#A17C6B);
+  
+  fill(TITLE_COLOR);
+  textSize(TEXT_SIZE/2);
+  text("(2 Symbols: 0, 1)", binary_x, title_y);
+  text("(8 Symbols: 0 - 7)", octal_x, title_y);
+  text("(10 Symbols: 0 - 9)", decimal_x, title_y);
+  text("(16 Symbols: 0 - 9, A - F)", hex_x, title_y);
+  
+  stroke(TITLE_COLOR);
+  line(decimal_x - textWidth(DECIMAL_TITLE), title_y + textAscent(), decimal_x + textWidth(DECIMAL_TITLE), title_y + textAscent());
+  line(binary_x - textWidth(BINARY_TITLE), title_y + textAscent(), binary_x + textWidth(BINARY_TITLE), title_y + textAscent());
+  line(octal_x - textWidth(OCTAL_TITLE), title_y + textAscent(), octal_x + textWidth(OCTAL_TITLE), title_y + textAscent());
+  line(hex_x - textWidth(HEX_TITLE), title_y + textAscent(), hex_x + textWidth(HEX_TITLE), title_y + textAscent());
+  
+  
+  textSize(TEXT_SIZE);
   //fill(DECIMAL_COLOR);
-  text("Decimal", decimal_x, title_y);
+  text(DECIMAL_TITLE, decimal_x, title_y - textAscent());
   //fill(BINARY_COLOR);
-  text("Binary", binary_x, title_y);
+  text(BINARY_TITLE, binary_x, title_y - textAscent());
   //fill(OCTAL_COLOR);
-  text("Octal", octal_x, title_y);
+  text(OCTAL_TITLE, octal_x, title_y - textAscent());
   //fill(HEX_COLOR);
-  text("Hexadecimal", hex_x, title_y);
+  text(HEX_TITLE, hex_x, title_y - textAscent());
+  
+  
+  
+  
   
 } // End of drawTitles()
 
