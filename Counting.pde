@@ -1,21 +1,8 @@
 /*
                            COUNTING
                            --------
-   Description
-   
-   
-   Pseudo Code
-   Every half second? update the value
-   Decimal at the very top
-   other four across the middle
-   global variable int counter
-   getBinary() (could just be simple binary(counter, num_bits) call instead)
-   getOctal() looks like this will need to be it's own function
-   getHexadecimal() hex(counter, num) call instead
-   getOther() - own function
-   maybe morph from one number to other? too complicated
-   or flip?
-   
+   This animation attempts to show the differences between different
+   counting/base systems - binary, octal, decimal and hexadecimal. 
    
 */
 
@@ -135,10 +122,6 @@ void drawTitles() {
   text(OCTAL_TITLE, octal_x, title_y - textAscent());
   //fill(HEX_COLOR);
   text(HEX_TITLE, hex_x, title_y - textAscent());
-  
-  
-  
-  
   
 } // End of drawTitles()
 
